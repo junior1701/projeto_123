@@ -1,6 +1,17 @@
 const salvarRegistro = document.getElementById('salvarRegistro');
 const pesquisar = document.getElementById('pesquisa');
 const excluirRegistro = document.getElementById('excluirRegistro');
+const modalCadastroCliente = document.getElementById('cadastroCliente');
+
+modalCadastroCliente.addEventListener('hidden.bs.modal', async () => {
+    document.getElementById('acao').value = '';
+});
+modalCadastroCliente.addEventListener('show.bs.modal', async () => {
+    document.getElementById('campo_status').className = 'col-6 mt-3 d-none';
+    if (document.getElementById('acao').value === 'editar') {
+        document.getElementById('campo_status').classList.remove('d-none');
+    }
+});
 
 async function DeleteCliente(id) {
     document.getElementById('id_cliente').value = id;
@@ -44,8 +55,11 @@ async function pesquisa() {
         html += `
         <tr   id="tr${element.id}">    
             <td>${element.id}</td>
-            <td>${element.nome_completo}</td>
+            <td>${element.nome}</td>
+            <td>${element.sobrenome}</td>
             <td>${element.cpf}</td>
+            <td>${element.rg}</td>
+            <td>${element.ativo}</td>
             <td>
                 <button onclick="AlterarCliente(${element.id});" type="button" class="btn btn-primary btn-sm btn-warning">
                     <i class="fa-solid fa-pen"></i>
@@ -95,8 +109,11 @@ async function AlterarCliente(id) {
         };
         const response = await fetch('controllerselecionarcliente.php', option);
         const json = await response.json();
-        document.getElementById('nome').value = json.nome_completo;
+        document.getElementById('nome').value = json.nome;
+        document.getElementById('sobrenome').value = json.sobrenome;
         document.getElementById('cpf').value = json.cpf;
+        document.getElementById('rg').value = json.rg;
+
         $('#cadastroCliente').modal('show');
 
     } catch (error) {
@@ -105,7 +122,7 @@ async function AlterarCliente(id) {
 
 }
 async function Update() {
-        const form = document.getElementById('form');
+    const form = document.getElementById('form');
     if (!form) {
         alert('Formulário com os dados não encontrado!');
 
@@ -120,7 +137,7 @@ async function Update() {
     const response = await fetch('controllerupdate.php', option);
     return await response.json();
 }
-    
+
 salvarRegistro.addEventListener('click', async () => {
     if (document.getElementById('acao').value === 'editar') {
         const response = await Update();

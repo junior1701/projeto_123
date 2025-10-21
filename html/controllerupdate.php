@@ -3,10 +3,13 @@
 require_once 'Conexao.php';
 
 $id             = $_POST['id_cliente'];
-$nome_completo  = $_POST['nome'];
+$nome           = $_POST['nome'];
+$sobrenome      = $_POST['sobrenome'];
 $cpf            = $_POST['cpf'];
+$rg             = $_POST['rg'];
+$ativo          = $_POST['status'];
 
-$sql            = "UPDATE cliente SET nome_completo = '{$nome_completo}', cpf = '{$cpf}' WHERE id = $id";
+$sql            = "UPDATE cliente SET nome = '{$nome}', sobrenome = '{$sobrenome}', cpf = '{$cpf}', rg = '{$rg}', ativo = '{$ativo}'  WHERE id = $id";
 
 $query          = $conexao->exec($sql);
 

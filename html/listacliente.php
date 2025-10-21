@@ -91,6 +91,18 @@
                   </label>
                 </div>
               </div>
+              <div id="campo_status" class="col-6 mt-3 d-none">
+                <div class="form-floating mb-3">
+                  <select class="form-select fs" id="status" name="status" aria-label="Status do Cliente">
+                    <option value="" selected="">Escolha o status</option>
+                    <option value="true">Ativo</option>
+                    <option value="false">Inativo</option>
+                  </select>
+                  <label for="status"><svg class="svg-inline--fa fa-magnifying-glass" data-prefix="fas" data-icon="magnifying-glass" role="img" viewBox="0 0 512 512" aria-hidden="true" data-fa-i2svg="">
+                      <path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376C296.3 401.1 253.9 416 208 416 93.1 416 0 322.9 0 208S93.1 0 208 0 416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path>
+                    </svg><!-- <i class="fa-solid fa-magnifying-glass"></i> Font Awesome fontawesome.com --> Status do Cliente</label>
+                </div>
+              </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
