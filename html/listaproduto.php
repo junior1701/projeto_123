@@ -21,7 +21,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <!-- TITULO MODAL -->
-            <h1 class="modal-title fs-5" id="excluirRegistroClienteLabel">
+            <h1 class="modal-title fs-5" id="excluirRegistroProdutoLabel">
               Atenção
             </h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -48,7 +48,7 @@
     </div>
 
     <div class="modal fade" id="cadastroProduto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-      aria-labelledby="cadastroClienteLabel" aria-hidden="true">
+      aria-labelledby="cadastroProdutoLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
@@ -125,7 +125,7 @@
         </div>
         <div class="col-12">
           <h1><i class="fa-regular fa-user"></i>
-            Produtos  Cadastrados
+            Produtos Cadastrados
           </h1>
           <div class="col-6 mt-3">
             <div class="form-floating mb-3">
@@ -140,18 +140,21 @@
               <tr>
                 <th><i class="fa-solid fa-fingerprint"></i>Código</th>
                 <th><i class="fa-solid fa-user"></i>Nome do Produto</th>
-                <th><i class="fa-solid fa-id-card"></i>Valor de compra</th>
-                <th><i class="fa-solid fa-id-card"></i>Valor de venda</th>
-                <th><i class="fa-solid fa-id-card"></i>Grupo</th>
-                <th><i class="fa-solid fa-user-check"></i>Marca</th>
+                <th><i class="fa-solid fa-dollar-sign"></i>Valor de compra</th>
+                <th><i class="fa-solid fa-dollar-sign"></i>Valor de venda</th>
+                <th><i class="fa-solid fa-clipboard-question"></i>Grupo</th>
+                <th><i class="fa-brands fa-spotify"></i>Marca</th>
                 <th><i class="fa-solid fa-wrench"></i>Ação</th>
               </tr>
             </thead>
             <tbody id="listaproduto">
               <tr>
                 <td>Código</td>
-                <td>Nome Completo</td>
-                <td>CPF</td>
+                <td>Nome do Produto</td>
+                <td>Valor de Compra</td>
+                <td>Valor de venda</td>
+                <td>Grupo</td>
+                <td>Marca</td>
                 <td>
                   <button type="button" class="btn btn-primary btn-sm btn-warning"><i
                       class="fa-solid fa-pen"></i>Editar</button>

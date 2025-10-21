@@ -2,6 +2,7 @@
 
 require_once 'Conexao.php';
 
+$id = $_POST['id_produto'];
 $nome = $_POST['nome'];
 $compra = $_POST['compra'];
 $venda = $_POST['venda'];
@@ -25,6 +26,6 @@ if ($query) {
 $response = [
     'msg' => 'Erro ao atualizar produto.',
     'status'  => false
-];   
+];
 
 echo json_encode($response);
