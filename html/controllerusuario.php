@@ -1,12 +1,13 @@
 <?php
 require_once'Conexao.php';
 
-$nome_completo = $_POST['nome'];
+$nome = $_POST['nome'];
+$sobrenome = $_POST['sobrenome'];
 $cpf = $_POST['cpf'];
-$email = $_POST['email'];
+$rg = $_POST['rg'];
 $senha = $_POST['senha'];
 
-$sql = "INSERT INTO usuario (nome_completo, cpf, email, senha) VALUES ('{$nome_completo}', '{$cpf}', '{$email}', '{$senha}')";
+$sql = "INSERT INTO usuario (nome, sobrenome, cpf, rg, senha) VALUES ('{$nome}', '{$sobrenome}', '{$cpf}', '{$rg}', '{$senha}')";
 
 $result = $conexao->exec($sql);
 if ($result) {

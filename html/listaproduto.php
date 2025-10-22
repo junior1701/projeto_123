@@ -45,7 +45,6 @@
         </div>
       </div>
     </div>
-    </div>
 
     <div class="modal fade" id="cadastroProduto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
       aria-labelledby="cadastroProdutoLabel" aria-hidden="true">
