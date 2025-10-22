@@ -2,9 +2,9 @@ const salvarRegistro = document.getElementById('salvarRegistro');
 const pesquisar = document.getElementById('pesquisa');
 const excluirRegistro = document.getElementById('excluirRegistro');
 
-async function DeleteUsuario(id) {
-    document.getElementById('id_usuario').value = id;
-    $('#excluirRegistroUsuario').modal('show');
+async function DeleteProduto(id) {
+    document.getElementById('id_produto').value = id;
+    $('#excluirRegistroProduto').modal('show');
 }
 
 async function Insert() {
@@ -20,7 +20,7 @@ async function Insert() {
         mode: 'cors',
         cache: 'default'
     };
-    const response = await fetch('controllerusuario.php', option);
+    const response = await fetch('controllerproduto.php', option);
     return await response.json();
 }
 
@@ -37,32 +37,33 @@ async function pesquisa() {
         mode: 'cors',
         cache: 'default'
     };
-    const response = await fetch('controllerpesquisausuario.php', option);
+    const response = await fetch('controllerpesquisaproduto.php', option);
     const query = await response.json();
     let html = '';
     query.data.forEach(element => {
         html += `
         <tr   id="tr${element.id}">    
-            <td>${element.id}</td>
-            <td>${element.nome}</td>
-            <td>${element.sobrenome}</td>
-            <td>${element.cpf}</td>
-            <td>${element.rg}</td>
-            <td>
-                <button onclick="AlterarUsuario(${element.id});" type="button" class="btn btn-primary btn-sm btn-warning">
-                    <i class="fa-solid fa-pen"></i>
-                    Editar
-                </button>
-                <button onclick="DeleteUsuario(${element.id});" type="button" class="btn btn-danger btn-sm btn-danger">
-                    <i class="fa-solid fa-trash"></i>
-                    Excluir
-                </button>
-            </td>
+        <td>${element.id}</td>
+        <td>${element.nome_produto}</td>
+        <td>${element.valor_compra}</td>
+        <td>${element.valor_venda}</td>
+        <td>${element.grupo}</td>
+        <td>${element.marca}</td>
+        <td>
+        <button onclick="AlterarProduto(${element.id});" type="button" class="btn btn-primary btn-sm btn-warning">
+        <i class="fa-solid fa-pen"></i>
+        Editar
+        </button>
+        <button onclick="DeleteProduto(${element.id});" type="button" class="btn btn-danger btn-sm btn-danger">
+        <i class="fa-solid fa-trash"></i>
+        Excluir
+        </button>
+        </td>
         </tr>
         `;
 
     });
-    document.getElementById('listausuario').innerHTML = html;
+    document.getElementById('listaproduto').innerHTML = html;
 }
 
 async function excluir() {
@@ -74,18 +75,18 @@ async function excluir() {
         mode: 'cors',
         cache: 'default'
     };
-    const response = await fetch('controllerdeleteusuario.php', option);
+    const response = await fetch('controllerdeleteproduto.php', option);
     const json = await response.json();
     if (!json.status) {
         alert(json.msg);
         return;
     }
-    $('#excluirRegistroUsuario').modal('hide');
-    document.getElementById('tr' + document.getElementById('id_usuario').value).remove();
+    $('#excluirRegistroProduto').modal('hide');
+    document.getElementById('tr' + document.getElementById('id_produto').value).remove();
 }
-async function AlterarUsuario(id) {
+async function AlterarProduto(id) {
     try {
-        document.getElementById('id_usuario').value = id;
+        document.getElementById('id_produto').value = id;
         document.getElementById('acao').value = 'editar';
         const form = document.getElementById('form');
         const formData = new FormData(form);
@@ -95,21 +96,22 @@ async function AlterarUsuario(id) {
             mode: 'cors',
             cache: 'default'
         };
-        const response = await fetch('controllerselecionarusuario.php', option);
+        const response = await fetch('controllerselecionarproduto.php', option);
+        //Converte a resposta do back-end para JSON
         const json = await response.json();
-        document.getElementById('nome').value = json.nome;
-        document.getElementById('sobrenome').value = json.sobrenome;
-        document.getElementById('cpf').value = json.cpf;
-        document.getElementById('rg').value = json.rg;
-        $('#cadastroUsuario').modal('show');
+        document.getElementById('nome').value = json.nome_produto;
+        document.getElementById('compra').value = json.valor_compra;
+        document.getElementById('venda').value = json.valor_venda;
+        document.getElementById('grupo').value = json.grupo;
+        document.getElementById('marca').value = json.marca;
+        $('#cadastroProduto').modal('show');
 
     } catch (error) {
-        throw new Error("Erro ao buscar dados do usuario: " + error.message);
+        throw new Error("Erro ao buscar dados do produto: " + error.message);
     }
-
 }
 async function Update() {
-        const form = document.getElementById('form');
+    const form = document.getElementById('form');
     if (!form) {
         alert('Formulário com os dados não encontrado!');
 
@@ -121,15 +123,15 @@ async function Update() {
         mode: 'cors',
         cache: 'default'
     };
-    const response = await fetch('controllerupdateusuario.php', option);
+    const response = await fetch('controllerupdateproduto.php', option);
     return await response.json();
 }
-    
+
 salvarRegistro.addEventListener('click', async () => {
     if (document.getElementById('acao').value === 'editar') {
         const response = await Update();
         await pesquisa();
-        $('#cadastroUsuario').modal('hide');
+        $('#cadastroProduto').modal('hide');
         alert(response.msg);
         return;
     }
@@ -139,7 +141,7 @@ salvarRegistro.addEventListener('click', async () => {
         return;
     }
     await pesquisa();
-    $('#cadastroUsuario').modal('hide');
+    $('#cadastroProduto').modal('hide');
     alert(response.msg);
 
 });
