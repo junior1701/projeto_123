@@ -2,17 +2,17 @@
 require_once'Conexao.php';
 
 $nome = $_POST['nome'];
-$sobrenome = $_POST['sobrenome'];
-$cpf = $_POST['cpf'];
-$rg = $_POST['rg'];
-$senha = $_POST['senha'];
+$compra = $_POST['compra'];
+$venda = $_POST['venda'];
+$grupo = $_POST['grupo'];
+$marca = $_POST['marca'];
 
-$sql = "INSERT INTO usuario (nome, sobrenome, cpf, rg, senha) VALUES ('{$nome}', '{$sobrenome}', '{$cpf}', '{$rg}', '{$senha}')";
+$sql = "INSERT INTO produto (nome_produto, valor_compra, valor_venda, grupo, marca) VALUES ('{$nome}','{$compra}', '{$venda}','{$grupo}', '{$marca}')";
 
 $result = $conexao->exec($sql);
 if ($result) {
     $response = [
-      'msg' => 'Usuario cadastrado com sucesso!',
+      'msg' => 'Produto cadastrado com sucesso!',
       'status' => true
     ];
     echo json_encode($response);
