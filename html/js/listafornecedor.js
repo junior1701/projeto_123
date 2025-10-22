@@ -6,7 +6,7 @@ const modalCadastroCliente = document.getElementById('cadastroCliente');
 
 async function DeleteCliente(id) {
     document.getElementById('id_cliente').value = id;
-    $('#excluirRegistroCliente').modal('show');
+    $('#excluirRegistroFornecdor').modal('show');
 }
 
 async function Insert() {
@@ -39,7 +39,7 @@ async function pesquisa() {
         mode: 'cors',
         cache: 'default'
     };
-    const response = await fetch('controllerpesquisa.php', option);
+    const response = await fetch('controllerpesquisaFornecedor.php', option);
     const query = await response.json();
     let html = '';
     query.data.forEach(element => {
@@ -77,13 +77,13 @@ async function excluir() {
         mode: 'cors',
         cache: 'default'
     };
-    const response = await fetch('/controllerdelete.php', option);
+    const response = await fetch('/controllerdeleteFornecedor.php', option);
     const json = await response.json();
     if (!json.status) {
         alert(json.msg);
         return;
     }
-    $('#excluirRegistroCliente').modal('hide');
+    $('#excluirRegistroFornecedor').modal('hide');
     document.getElementById('tr' + document.getElementById('id_cliente').value).remove();
 }
 async function AlterarCliente(id) {
@@ -98,14 +98,14 @@ async function AlterarCliente(id) {
             mode: 'cors',
             cache: 'default'
         };
-        const response = await fetch('controllerselecionarcliente.php', option);
+        const response = await fetch('controllerselecionarfornecedor.php', option);
         const json = await response.json();
         document.getElementById('nome').value = json.nome;
-        document.getElementById('sobrenome').value = json.sobrenome;
-        document.getElementById('cpf').value = json.cpf;
-        document.getElementById('rg').value = json.rg;
+        document.getElementById('razao_social').value = json.razao_social;
+        document.getElementById('cnpj').value = json.cnpj;
+        document.getElementById('ie').value = json.ie;
 
-        $('#cadastroCliente').modal('show');
+        $('#cadastroFornecedor').modal('show');
 
     } catch (error) {
         throw new Error("Erro ao buscar dados do cliente: " + error.message);
@@ -125,7 +125,7 @@ async function Update() {
         mode: 'cors',
         cache: 'default'
     };
-    const response = await fetch('controllerupdate.php', option);
+    const response = await fetch('controllerupdateFornecedor.php', option);
     return await response.json();
 }
 
@@ -133,7 +133,7 @@ salvarRegistro.addEventListener('click', async () => {
     if (document.getElementById('acao').value === 'editar') {
         const response = await Update();
         await pesquisa();
-        $('#cadastroCliente').modal('hide');
+        $('#cadastroFornecedor').modal('hide');
         alert(response.msg);
         return;
     }
@@ -143,7 +143,7 @@ salvarRegistro.addEventListener('click', async () => {
         return;
     }
     await pesquisa();
-    $('#cadastroCliente').modal('hide');
+    $('#cadastroFornecedor').modal('hide');
     alert(response.msg);
 
 });
