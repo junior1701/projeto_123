@@ -12,6 +12,7 @@
 <body>
 
   <form id="form">
+    <?php include_once 'menu.php' ?>
     <input type="hidden" id="id_produto" name="id_produto">
     <input type="hidden" id="acao" name="acao">
 

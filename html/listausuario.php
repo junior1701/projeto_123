@@ -10,12 +10,13 @@
 </head>
 
 <body>
-    
+
 
     <form id="form">
+        <?php include_once 'menu.php' ?>
+        
         <input type="hidden" id="id_usuario" name="id_usuario">
         <input type="hidden" id="acao" name="acao">
-
         <div class="modal fade" id="excluirRegistroUsuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="excluirRegistroUsuarioLabel" aria-hidden="true">
             <div class="modal-dialog modal-rm ">
