@@ -13,13 +13,13 @@
           <a class="nav-link" href="/listacliente.php">Cliente</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/listausuario.php">Usuario</a>
+          <a class="nav-link" href="/lista.php">Usuario</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/listafornecedor.php">Fornecedor</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/listaproduto.php">Produto</a>
+          <a class="nav-link" href="/listacliente.php">Produto</a>
         </li>
 
 
